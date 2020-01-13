@@ -23,4 +23,5 @@ module.exports = {
         contrasena_correo: process.env.PASSWORD_EMAIL || 'test1',
         servicio: process.env.SERVICE_EMAIL ||'Hotmail'
     }
+    
 };
