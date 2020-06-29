@@ -17,7 +17,6 @@ admin.initializeApp({
   databaseURL: "https://sabinas-app.firebaseio.com"
 });
 
-
 app.use(express.static('./public'));
 app.set('port', process.env.PORT || 3000);
 app.use(express.urlencoded({extended: false}));         
@@ -39,7 +38,3 @@ consign({cwd: 'src'})
 http.listen(app.get('port'), () => {
     console.log(`Server on port ${app.get('port')}`.bgMagenta);
 });
-
-
-
-
