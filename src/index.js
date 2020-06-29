@@ -37,7 +37,7 @@ consign({cwd: 'src'})
 
 //Iniciar Server
 http.listen(app.get('port'), () => {
-    console.log(`Server on port ${app.get('port')}`.green);
+    console.log(`Server on port ${app.get('port')}`.bgMagenta);
 });
 
 
