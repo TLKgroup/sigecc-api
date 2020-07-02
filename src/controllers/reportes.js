@@ -24,8 +24,23 @@ module.exports = app => {
             });
         }
     }
-
+    
+    app.setStatus = async (req, res)  => {
+        let body = req.body;
+            
+        let report = {
+            status: body.status,
+            modificationAt: body.modificationAt,    
+        };
+        
+        let reportRef = await dbFirebase.collection('reports').doc(body.id).update(report);
+       
+        if(reportRef) {
+            res.json({
+                OK: true
+            });
+        }
+    }
 
     return app;
-
 }

@@ -6,4 +6,6 @@ module.exports = app => {
     const Reporte = app.controllers.reportes;    
 
     app.get('/reportes', verificarToken, Reporte.getReportFirebase);
+
+    app.post('/setstatus', verificarToken, Reporte.setStatus);
 }
