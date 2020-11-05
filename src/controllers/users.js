@@ -1,14 +1,15 @@
 module.exports = app => {
 
     const dbFirebase = app.dbFirestore;
+    const dbFire = app.dbFirebase;
 
-    app.getReportFirebase = async (req, res)  => {
-        let reports = [];
-        await dbFirebase.collection('reports').get()
+    app.getUsersFirebase = async (req, res)  => {
+        let users = [];
+        await dbFirebase.collection('users').get()
         .then((snapshot) => {
             snapshot.forEach((doc) => {
                 console.log(doc.id, '=>', doc.data());
-                reports.push(
+                users.push(
                     {
                         id: doc.id, 
                         data: doc.data()
@@ -17,25 +18,22 @@ module.exports = app => {
             });
         });
 
-        if(reports) {
+        if(users) {
             res.json({
                 OK: true,
-                Reportes: reports
+                Users: users
             });
         }
     }
-    
-    app.setStatus = async (req, res)  => {
+
+    app.deleteUserFirebase = async (req, res)  => {
         let body = req.body;
             
-        let report = {
-            modificationAt: body.modificationAt,    
-            status: body.status
-        };
-        
-        let reportRef = await dbFirebase.collection('reports').doc(body.id).update(report);
+        var user = dbFire.auth().currentUser;
+
+        let deleteUser = await user.delete(body.id);
        
-        if(reportRef) {
+        if(deleteUser) {
             res.json({
                 OK: true
             });

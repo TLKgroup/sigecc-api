@@ -6,7 +6,6 @@ module.exports = app => {
     const Usuario = app.database.models.Usuarios;
     const Roles = app.database.models.Roles;
     
-    
 
     app.ObtenerUsuarios = (req, res) => {
 
@@ -44,7 +43,7 @@ module.exports = app => {
         });
 
         Usuario.create(usuario.dataValues, {
-            fields: ['nombre_empleado', 'nombre_usuario', 'contrasena', 'id_role']
+            fields: ['nombre_usuario', 'nombre_empleado', 'contrasena', 'id_role']
         })
         .then(result => {
             delete result.dataValues.contrasena;
@@ -232,6 +231,5 @@ module.exports = app => {
         });
     }
 
-    
     return app;
 }

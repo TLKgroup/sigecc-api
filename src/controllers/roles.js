@@ -26,6 +26,23 @@ module.exports = app => {
         });
     }
 
+    app.NameRoles = (req, res) => {
+        Roles.findAll({
+  
+        })
+        .then(result => {            
+            res.json({
+                OK: true,
+                Roles: result
+            })
+        })
+        .catch(error => {
+            res.status(412).json({
+                msg: error.message
+            });
+        });
+    }
+
     app.ObtenerModulos = (req, res) =>{
         Modulos.findAll({
             include: [{
@@ -464,8 +481,6 @@ module.exports = app => {
             } else {                
                 throw new Error();
             }
-            
-
             
         }).then(result => {
             res.json({

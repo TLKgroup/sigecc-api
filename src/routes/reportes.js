@@ -7,5 +7,5 @@ module.exports = app => {
 
     app.get('/reportes', verificarToken, Reporte.getReportFirebase);
 
-    app.post('/setstatus', verificarToken, Reporte.setStatus);
+    app.put('/setstatus', verificarToken, Reporte.setStatus);
 }

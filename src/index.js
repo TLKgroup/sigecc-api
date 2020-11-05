@@ -24,6 +24,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 app.dbFirestore = admin.firestore();
+app.dbFire = admin.auth();
 app.io = socketIO;
 
 consign({cwd: 'src'})
