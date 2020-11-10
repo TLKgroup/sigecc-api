@@ -4,4 +4,6 @@ module.exports = app => {
     const Verificado = app.controllers.verificado;    
 
     app.get('/verificado', verificarToken, Verificado.getVerificadoFirebase);
+
+    app.put('/updateVerificado', verificarToken, Verificado.updateVerificadoFirebase);
 }
