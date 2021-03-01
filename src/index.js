@@ -10,11 +10,11 @@ const http = require('http').createServer(app);
 const socketIO = require('socket.io')(http);
 const admin = require("firebase-admin");
 
-const serviceAccount = require("./firebase/sabinas-app-firebase-adminsdk-uqi8o-f2dd50249f.json");
+const serviceAccount = require("./firebase/pan-app-d4327-firebase-adminsdk-l1krr-ed0eab66c8.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://sabinas-app.firebaseio.com"
+  databaseURL: "https://pan-app.firebaseio.com"
 });
 
 app.use(express.static('./public'));
@@ -37,5 +37,5 @@ consign({cwd: 'src'})
 
 //Iniciar Server
 http.listen(app.get('port'), () => {
-    console.log(`Server on port ${app.get('port')}`.yellow);
+  console.log(`Server on port ${app.get('port')}`.blue);
 });
