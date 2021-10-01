@@ -5,8 +5,7 @@ module.exports = app => {
 
     app.getUsersFirebase = async (req, res)  => {
         let users = [];
-        await dbFirebase.collection('users').get()
-        .then((snapshot) => {
+        await dbFirebase.collection('users').get().then((snapshot) => {
             snapshot.forEach((doc) => {
                 console.log(doc.id, '=>', doc.data());
                 users.push(
