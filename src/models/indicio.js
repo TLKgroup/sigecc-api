@@ -53,6 +53,10 @@ module.exports = (sequelize, DataType) => {
             type: DataType.STRING,
             allowNull: false
         },
+        lugar: {
+            type: DataType.STRING,
+            allowNull: false
+        },
         nuc: {
             type: DataType.STRING,
             allowNull: false
