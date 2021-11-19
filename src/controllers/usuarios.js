@@ -6,7 +6,6 @@ module.exports = app => {
     const Usuario = app.database.models.Usuarios;
     const Roles = app.database.models.Roles;
     
-
     app.ObtenerUsuarios = (req, res) => {
 
         Usuario.findAll({

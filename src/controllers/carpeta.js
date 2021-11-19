@@ -4,7 +4,36 @@ module.exports = app => {
 
     const Op = Sequelize.Op;
     const Carpeta = app.database.models.Carpeta;
-    // const GPSQuiz = app.database.models.GPSQUIZ;
+
+    app.addNewFolder = (req, res) => {
+        let folder = new Carpeta({ 
+            nuc: req.body.nuc,     
+            isOpen: 'true',     
+            horaIntervencion: req.body.horaIntervencion,     
+            fechaIntervencion: req.body.fechaIntervencion,     
+            lugar: req.body.lugar,     
+            institucion: req.body.institucion,     
+            inicio: req.body.inicio,     
+            folio: req.body.folio,     
+        });        
+        
+        Carpeta.create(folder.dataValues, {
+            fields: ['nuc', 'isOpen', 'horaIntervencion', 'fechaIntervencion', 'lugar', 'institucion', 'inicio', 'folio']
+        })
+        .then(result => {                       
+            res.json({
+                OK: true,
+                Carpeta: result
+            });
+        })
+        .catch(err => {            
+            res.status(412).json({
+                OK: false,
+                msg: err
+            });
+        });        
+    }
+    
 
     app.getCarpetas = (req, res) => {
         const { page, size } = req.query;

@@ -21,14 +21,6 @@ module.exports = (sequelize, DataType) => {
             type: DataType.STRING,
             allowNull: false
         },
-        latitud: {
-            type: DataType.STRING,
-            allowNull: false
-        },
-        longitud: {
-            type: DataType.STRING,
-            allowNull: false
-        },
         documentacion: {
             type: DataType.STRING,
             allowNull: false
@@ -41,19 +33,43 @@ module.exports = (sequelize, DataType) => {
             type: DataType.STRING,
             allowNull: false
         },
-        naturaleza: {
+        latitud: {
             type: DataType.STRING,
             allowNull: false
         },
-        foto: {
-            type: DataType.STRING,
-            allowNull: false
-        },
-        smart_tag: {
+        longitud: {
             type: DataType.STRING,
             allowNull: false
         },
         lugar: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        foto1: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        naturaleza: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        nombreUsuario: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        usuario: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        idCarpeta: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        foto2: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        smart_tag: {
             type: DataType.STRING,
             allowNull: false
         },

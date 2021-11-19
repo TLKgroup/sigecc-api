@@ -4,6 +4,10 @@ module.exports = (sequelize, DataType) => {
             type: DataType.STRING,
             primaryKey: true,
         },
+        isOpen:{
+            type: DataType.STRING,
+            allowNull: false
+        },
         horaIntervencion:{
             type: DataType.STRING,
             allowNull: false
@@ -20,7 +24,11 @@ module.exports = (sequelize, DataType) => {
             type: DataType.STRING,
             allowNull: false
         },
-        nc: {
+        inicio: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        folio: {
             type: DataType.STRING,
             allowNull: false
         },
