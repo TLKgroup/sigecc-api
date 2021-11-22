@@ -63,6 +63,64 @@ module.exports = app => {
         });
     }
 
+    app.addNewIndicio = (req, res) => {
+        let folderIndicio = new Indicio({ 
+            identificacion: req.body.identificacion,
+            descripcion: req.body.descripcion,
+            fecha: req.body.fecha,
+            hora: req.body.hora,
+            documentacion: req.body.documentacion,
+            recoleccion: req.body.recoleccion,
+            embalaje: req.body.embalaje,
+            latitud: req.body.latitud,
+            longitud: req.body.longitud,
+            lugar: req.body.lugar,
+            foto1: req.body.foto1,
+            naturaleza: req.body.naturaleza,
+            nombreUsuario: req.body.nombreUsuario,
+            usuario: req.body.usuario,
+            // idCarpeta: req.body.idCarpeta,
+            foto2: req.body.foto2,
+            smart_tag: req.body.smart_tag,
+            nuc: req.body.nuc
+        });        
+        
+        Indicio.create(folderIndicio.dataValues, {
+            fields: [
+                'identificacion',
+                'descripcion',
+                'fecha',
+                'hora',
+                'documentacion',
+                'recoleccion',
+                'embalaje',
+                'latitud',
+                'longitud',
+                'lugar',
+                'foto1',
+                'naturaleza',
+                'nombreUsuario',
+                'usuario',
+                // 'idCarpeta',
+                'foto2',
+                'smart_tag',
+                'nuc'
+            ]
+        })
+        .then(result => {                       
+            res.json({
+                OK: true,
+                Indicio: result
+            });
+        })
+        .catch(err => {            
+            res.status(412).json({
+                OK: false,
+                msg: err
+            });
+        });        
+    }
+
 
 
 

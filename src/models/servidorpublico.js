@@ -1,15 +1,19 @@
 module.exports = (sequelize, DataType) => {
-    const Indicio = sequelize.define('Indicio',{
-        id_indicio:{
+    const ServidorPublico = sequelize.define('ServidorPublico',{
+        id_servidor_publico:{
             type: DataType.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        identificacion:{
+        nuc:{
             type: DataType.STRING,
             allowNull: false
         },
-        descripcion: {
+        folio: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        idCarpeta: {
             type: DataType.STRING,
             allowNull: false
         },
@@ -21,75 +25,43 @@ module.exports = (sequelize, DataType) => {
             type: DataType.STRING,
             allowNull: false
         },
-        documentacion: {
+        nombre: {
             type: DataType.STRING,
             allowNull: false
         },
-        recoleccion: {
+        institucion: {
             type: DataType.STRING,
             allowNull: false
         },
-        embalaje: {
+        cargo: {
             type: DataType.STRING,
             allowNull: false
         },
-        latitud: {
+        etapa: {
             type: DataType.STRING,
             allowNull: false
         },
-        longitud: {
+        firma: {
             type: DataType.STRING,
             allowNull: false
         },
-        lugar: {
+        via: {
             type: DataType.STRING,
             allowNull: false
         },
-        foto1: {
+        condicionespecial: {
             type: DataType.STRING,
             allowNull: false
         },
-        naturaleza: {
+        recomendacion: {
             type: DataType.STRING,
             allowNull: false
         },
-        nombreUsuario: {
-            type: DataType.STRING,
-            allowNull: false
-        },
-        usuario: {
-            type: DataType.STRING,
-            allowNull: false
-        },
-        // idCarpeta: {
-        //     type: DataType.STRING,
-        //     allowNull: false
-        // },
-        foto2: {
-            type: DataType.STRING,
-            allowNull: false
-        },
-        smart_tag: {
-            type: DataType.STRING,
-            allowNull: false
-        },
-        nuc: {
-            type: DataType.STRING,
-            allowNull: false
-        }
     }, 
     {
-        tableName: 'indicio',        
+        tableName: 'servidorpublico',        
         timestamps: false
     });
 
-    Indicio.associate = (models) => {
-
-        Indicio.belongsTo(models.Carpeta, {
-            foreignKey: 'nuc',
-            targetKey: 'nuc'
-        });
-    }
-
-    return Indicio;
+    return ServidorPublico;
 }

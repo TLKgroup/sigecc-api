@@ -9,4 +9,6 @@ module.exports = app => {
 
     app.get('/getIndiciosTotal', Indicios.getTotalIndicios); 
 
+    app.post('/addNewIndicio', Indicios.addNewIndicio); 
+
 }

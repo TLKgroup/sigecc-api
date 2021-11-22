@@ -1,15 +1,19 @@
 module.exports = (sequelize, DataType) => {
-    const Indicio = sequelize.define('Indicio',{
-        id_indicio:{
+    const Entrega = sequelize.define('Entrega',{
+        id_entrega:{
             type: DataType.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        identificacion:{
+        nuc:{
             type: DataType.STRING,
             allowNull: false
         },
-        descripcion: {
+        folio: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        lugarentrega: {
             type: DataType.STRING,
             allowNull: false
         },
@@ -21,31 +25,39 @@ module.exports = (sequelize, DataType) => {
             type: DataType.STRING,
             allowNull: false
         },
-        documentacion: {
-            type: DataType.STRING,
-            allowNull: false
-        },
-        recoleccion: {
-            type: DataType.STRING,
-            allowNull: false
-        },
         embalaje: {
             type: DataType.STRING,
             allowNull: false
         },
-        latitud: {
+        nombreentrega: {
             type: DataType.STRING,
             allowNull: false
         },
-        longitud: {
+        nombrerecibe: {
             type: DataType.STRING,
             allowNull: false
         },
-        lugar: {
+        institucionentrega: {
             type: DataType.STRING,
             allowNull: false
         },
-        foto1: {
+        institucionrecibe: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        cargoentrega: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        cargorecibe: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        firmaentrega: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        firmarecibe: {
             type: DataType.STRING,
             allowNull: false
         },
@@ -53,43 +65,12 @@ module.exports = (sequelize, DataType) => {
             type: DataType.STRING,
             allowNull: false
         },
-        nombreUsuario: {
-            type: DataType.STRING,
-            allowNull: false
-        },
-        usuario: {
-            type: DataType.STRING,
-            allowNull: false
-        },
-        // idCarpeta: {
-        //     type: DataType.STRING,
-        //     allowNull: false
-        // },
-        foto2: {
-            type: DataType.STRING,
-            allowNull: false
-        },
-        smart_tag: {
-            type: DataType.STRING,
-            allowNull: false
-        },
-        nuc: {
-            type: DataType.STRING,
-            allowNull: false
-        }
     }, 
     {
-        tableName: 'indicio',        
+        tableName: 'entrega',        
         timestamps: false
     });
 
-    Indicio.associate = (models) => {
+    return Entrega;
 
-        Indicio.belongsTo(models.Carpeta, {
-            foreignKey: 'nuc',
-            targetKey: 'nuc'
-        });
-    }
-
-    return Indicio;
 }
