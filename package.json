@@ -1,11 +1,11 @@
 {
   "name": "api_sabinas",
   "version": "1.0.0",
-  "description": "Sabinas API",
+  "description": "SIGECC API",
   "main": "src/index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "start": "node dist/"
+    "start": "nodemon src/index.js"
   },
   "author": "",
   "license": "ISC",
