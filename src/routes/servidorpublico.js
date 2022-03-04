@@ -4,4 +4,7 @@ module.exports = app => {
 
     app.post('/addNewServidorPublico', ServidoresPublico.addNewServidorPublico); 
 
+    app.post('/getServidorPublicoXNUC', ServidoresPublico.getServidorPublicoXNUC); 
+
+    app.post('/getServidorPublicoXIndicio', ServidoresPublico.getServidorPublicoXIndicio); 
 }

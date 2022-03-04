@@ -65,6 +65,22 @@ module.exports = (sequelize, DataType) => {
             type: DataType.STRING,
             allowNull: false
         },
+        indicio: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        observacion: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        permanencia: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        proposito: {
+            type: DataType.STRING,
+            allowNull: false
+        },
     }, 
     {
         tableName: 'entrega',        

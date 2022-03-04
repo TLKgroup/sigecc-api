@@ -20,7 +20,11 @@ module.exports = app => {
             cargorecibe: req.body.cargorecibe,
             firmaentrega: req.body.firmaentrega,
             firmarecibe: req.body.firmarecibe,
-            naturaleza: req.body.naturaleza
+            naturaleza: quitarAcentos(req.body.naturaleza),
+            indicio: req.body.indicio,
+            observacion: req.body.observacion,
+            permanencia: req.body.permanencia,
+            proposito: req.body.proposito,
         });        
         
         Entrega.create(folderEntrega.dataValues, {
@@ -39,7 +43,11 @@ module.exports = app => {
                 'cargorecibe',
                 'firmaentrega',
                 'firmarecibe',
-                'naturaleza'
+                'naturaleza',
+                'indicio',
+                'observacion',
+                'permanencia',
+                'proposito',
             ]
         })
         .then(result => {                       
@@ -54,6 +62,55 @@ module.exports = app => {
                 msg: err
             });
         });        
+    }
+
+    app.getEntregaXNUC = (req, res) => {
+        let body = req.body;
+
+        Entrega.findAll({ 
+            where:{
+                nuc: body.nuc
+            }
+        })
+        .then(result => {
+            res.json({
+                OK: true,
+                Total: result.length,
+                Entrega: result
+            })
+        })
+        .catch(error => {
+            res.status(412).json({
+                msg: error.message
+            });
+        });
+    }
+
+    app.getEntregaXIndicioNUC = (req, res) => {
+        let body = req.body;
+
+        Entrega.findAll({ 
+            where:{
+                nuc: body.nuc,
+                indicio: body.indicio,
+            }
+        })
+        .then(result => {
+            res.json({
+                OK: true,
+                EntregaXI: result
+            })
+        })
+        .catch(error => {
+            res.status(412).json({
+                msg: error.message
+            });
+        });
+    }
+
+    const quitarAcentos = (cadena) => {
+        const acentos = {'á':'a','é':'e','í':'i','ó':'o','ú':'u','ñ':'n',"'":' ',"¿":' ',"?":' ','Á':'A','É':'E','Í':'I','Ó':'O','Ú':'U','Ñ':'N'};
+        return cadena.split('').map( letra => acentos[letra] || letra).join('').toString();	
     }
 
     return app;

@@ -19,8 +19,9 @@ admin.initializeApp({
 
 app.use(express.static('./public'));
 app.set('port', process.env.PORT || 3000);
-app.use(express.urlencoded({extended: false}));         
-app.use(express.json());
+app.use(express.urlencoded({extended: true, limit: '500mb', parameter: 500000}));         
+app.use(express.json({limit: '500mb'}));
+app.use('/images', express.static('images'));
 app.use(cookieParser());
 app.use(cors());
 app.dbFirestore = admin.firestore();

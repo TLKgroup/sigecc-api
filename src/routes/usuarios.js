@@ -19,4 +19,6 @@ module.exports = app => {
     app.get('/faker/user/:num', Usuario.GenerarUsuarios);
 
     app.get('/usuarios/count/totales', Usuario.ConsultarUsuarioTotales);
+
+    app.get('/getCountUsers', Usuario.getCountUsers);
 }

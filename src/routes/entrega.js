@@ -4,4 +4,8 @@ module.exports = app => {
 
     app.post('/addNewEntrega', Entregas.addNewEntrega); 
 
+    app.post('/getEntregaXNUC', Entregas.getEntregaXNUC); 
+
+    app.post('/getEntregaXIndicioNUC', Entregas.getEntregaXIndicioNUC); 
+
 }

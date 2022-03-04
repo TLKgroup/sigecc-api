@@ -1,50 +1,59 @@
 module.exports = (sequelize, DataType) => {
-    const Carpeta = sequelize.define('Carpeta',{
-        nuc:{
-            type: DataType.STRING,
+    const ADMLOGS = sequelize.define('ADMLOGS',{
+        id_admlog:{
+            type: DataType.INTEGER,
             primaryKey: true,
+            autoIncrement: true
         },
-        isOpen:{
+        nombre_tabla:{
             type: DataType.STRING,
             allowNull: false
         },
-        horaIntervencion:{
+        nombre_objeto:{
             type: DataType.STRING,
             allowNull: false
         },
-        horaCreacion:{
+        id_objeto:{
             type: DataType.STRING,
             allowNull: false
         },
-        fechaIntervencion: {
+        tipo_transaccion:{
             type: DataType.STRING,
             allowNull: false
         },
-        lugar: {
+        descripcion:{
             type: DataType.STRING,
             allowNull: false
         },
-        institucion: {
+        nombre:{
             type: DataType.STRING,
             allowNull: false
         },
-        inicio: {
+        usuario:{
             type: DataType.STRING,
             allowNull: false
         },
-        folio: {
+        publicIP:{
             type: DataType.STRING,
             allowNull: false
         },
-        entregado: {
+        privateIP:{
             type: DataType.STRING,
             allowNull: false
-        }
+        },
+        navegator:{
+            type: DataType.STRING,
+            allowNull: false
+        },
+        fecha_creacion:{
+            type: DataType.STRING,
+            allowNull: false
+        },
     }, 
     {
-        tableName: 'carpeta',        
+        tableName: 'adm_log',        
         timestamps: false
     });
 
-    return Carpeta;
+    return ADMLOGS;
 }

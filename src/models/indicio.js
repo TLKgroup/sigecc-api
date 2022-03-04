@@ -61,10 +61,6 @@ module.exports = (sequelize, DataType) => {
             type: DataType.STRING,
             allowNull: false
         },
-        // idCarpeta: {
-        //     type: DataType.STRING,
-        //     allowNull: false
-        // },
         foto2: {
             type: DataType.STRING,
             allowNull: false
@@ -74,6 +70,34 @@ module.exports = (sequelize, DataType) => {
             allowNull: false
         },
         nuc: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        escrito: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        fotografico: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        croquis: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        otro: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        especifique: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        entregado: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        estado: {
             type: DataType.STRING,
             allowNull: false
         }

@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataType) => {
     const ServidorPublico = sequelize.define('ServidorPublico',{
-        id_servidor_publico:{
+        id_entrega:{
             type: DataType.INTEGER,
             primaryKey: true,
             autoIncrement: true
@@ -54,6 +54,10 @@ module.exports = (sequelize, DataType) => {
             allowNull: false
         },
         recomendacion: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        identificador: {
             type: DataType.STRING,
             allowNull: false
         },

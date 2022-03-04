@@ -128,5 +128,20 @@ module.exports = app => {
         });
     }
 
+    app.getCountUserApp = (req, res) => {
+        UsuarioAPP.count({}).then(result => {
+            res.json({
+                OK: true,
+                Total: result
+            })
+        })
+        .catch(error => {
+            res.status(412).json({
+                msg: error.message
+            });
+        });
+    }
+
+
     return app;
 }

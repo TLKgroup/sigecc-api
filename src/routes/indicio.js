@@ -5,10 +5,18 @@ module.exports = app => {
 
     app.get('/getIndicios', Indicios.getIndicios); 
     
-    app.get('/getIndiciosxNUC/:nuc', Indicios.getIndiciosXNUC); 
+    app.post('/getIndiciosxNUC', Indicios.getIndiciosXNUC);
+
+    app.post('/getIndiciosXNaturalezaAndNUC', Indicios.getIndiciosXNaturalezaAndNUC); 
 
     app.get('/getIndiciosTotal', Indicios.getTotalIndicios); 
 
-    app.post('/addNewIndicio', Indicios.addNewIndicio); 
+    app.post('/addNewIndicio', Indicios.addNewIndicio);
 
+    app.put('/updateIndicio/:id_indicio', Indicios.updateIndicio); 
+
+    app.delete('/deleteIndicio/:id_indicio', Indicios.deleteIndicio);
+
+    //Perito
+    app.get('/getIndiciosXPeritoAndFolder/:usuario', Indicios.getIndiciosXPeritoAndFolder);     
 }

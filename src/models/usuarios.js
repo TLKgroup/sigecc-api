@@ -27,6 +27,10 @@ module.exports = (sequelize, DataType) => {
             values: ['A', 'I'],
             allowNull: true     
         },
+        cargo: {
+            type: DataType.STRING,
+            allowNull: false        
+        }, 
         fecha_creacion: {
             type: DataType.DATE,
             allowNull: true    

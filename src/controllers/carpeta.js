@@ -10,15 +10,17 @@ module.exports = app => {
             nuc: req.body.nuc,     
             isOpen: 'true',     
             horaIntervencion: req.body.horaIntervencion,     
+            horaCreacion: req.body.horaCreacion,     
             fechaIntervencion: req.body.fechaIntervencion,     
-            lugar: req.body.lugar,     
+            lugar: quitarAcentos(req.body.lugar),     
             institucion: req.body.institucion,     
             inicio: req.body.inicio,     
             folio: req.body.folio,     
+            entregado: 'false'     
         });        
         
         Carpeta.create(folder.dataValues, {
-            fields: ['nuc', 'isOpen', 'horaIntervencion', 'fechaIntervencion', 'lugar', 'institucion', 'inicio', 'folio']
+            fields: ['nuc', 'isOpen', 'horaIntervencion', 'horaCreacion', 'fechaIntervencion', 'lugar', 'institucion', 'inicio', 'folio', 'entregado']
         })
         .then(result => {                       
             res.json({
@@ -33,7 +35,6 @@ module.exports = app => {
             });
         });        
     }
-    
 
     app.getCarpetas = (req, res) => {
         const { page, size } = req.query;
@@ -70,6 +71,85 @@ module.exports = app => {
             });
         });
     }
+
+    app.updateFolder = (req, res) => {
+        let nu = req.params.nuc;
+        let body = req.body;
+
+        let upcc = new Carpeta({    
+            horaIntervencion: body.horaIntervencion,
+            fechaIntervencion: body.fechaIntervencion,		
+            lugar: body.lugar,
+            institucion: body.institucion,
+            inicio: body.inicio,
+            folio: body.folio
+        });        
+
+        Carpeta.update(upcc.dataValues, {            
+            where : {
+                nuc: nu
+            },           
+            fields: ['horaIntervencion', 'fechaIntervencion', 'lugar', 'institucion', 'inicio', 'folio']
+        }).then(result => {            
+            res.json({
+                OK: true,
+                rows_affected: result[0]
+            });
+        }).catch(err => {
+            res.status(412).json({
+                OK: false,
+                msg: err
+            });
+        });   
+    }
+
+    //Peritos
+    app.getFolderXPerito = (req, res) => {
+        let body = req.body;
+
+        Carpeta.findAll({ 
+            where:{
+                entregado: 'false',
+                nuc: body.nuc,
+            }
+        })
+        .then(re => {
+            res.json({
+                OK: true,
+                Resultado: re
+            })
+        })
+        .catch(error => {
+            res.status(412).json({
+                msg: error.message
+            });
+        });
+    }
+
+    // app.getFoldersPeritos = (req, res) => {
+
+    //     Carpeta.findAll({ 
+    //         where:{
+    //             entregado: 'false',
+    //             isOpen: 'true'
+    //         },
+    //         order: [
+    //             ['fechaIntervencion', 'DESC'],
+    //         ]
+    //     })
+    //     .then(re => {
+    //         res.json({
+    //             OK: true,
+    //             Total: re.length,
+    //             Resultado: re
+    //         })
+    //     })
+    //     .catch(error => {
+    //         res.status(412).json({
+    //             msg: error.message
+    //         });
+    //     });
+    // }
 
     const quitarAcentos = (cadena) => {
         const acentos = {'á':'a','é':'e','í':'i','ó':'o','ú':'u','ñ':'n',"'":' ',"¿":' ',"?":' ','Á':'A','É':'E','Í':'I','Ó':'O','Ú':'U','Ñ':'N'};

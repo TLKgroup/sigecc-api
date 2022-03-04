@@ -38,11 +38,12 @@ module.exports = app => {
             nombre_empleado: body.nombre_empleado,
             nombre_usuario: body.nombre_usuario,
             contrasena: bcrypt.hashSync(body.contrasena, 10),
-            id_role: body.id_role
+            id_role: body.id_role,
+            cargo: body.cargo
         });
 
         Usuario.create(usuario.dataValues, {
-            fields: ['nombre_usuario', 'nombre_empleado', 'contrasena', 'id_role']
+            fields: ['nombre_usuario', 'nombre_empleado', 'contrasena', 'id_role', 'cargo']
         })
         .then(result => {
             delete result.dataValues.contrasena;
@@ -62,7 +63,7 @@ module.exports = app => {
     app.ActualizarUsuario = (req, res) => {
         let id = req.params.id;
         let body = req.body;   
-        let fields = ['nombre_empleado', 'nombre_usuario', 'id_role', 'status']     
+        let fields = ['nombre_empleado', 'nombre_usuario', 'id_role', 'status', 'cargo']     
 
         let usuario = new Usuario();        
 
@@ -72,7 +73,8 @@ module.exports = app => {
                 nombre_usuario: body.nombre_usuario,
                 contrasena: bcrypt.hashSync(body.contrasena, 10),
                 id_role: body.role,
-                status: 'A'
+                status: 'A',
+                cargo: body.cargo,
             });
 
             fields.push('contrasena');
@@ -81,7 +83,8 @@ module.exports = app => {
                 nombre_empleado: body.nombre_empleado,
                 nombre_usuario: body.nombre_usuario,                
                 id_role: body.id_role,
-                status: 'A'
+                status: 'A',
+                cargo: body.cargo,
             });
         }
 
@@ -226,6 +229,24 @@ module.exports = app => {
             res.json({
                 OK: false,
                 msg: err
+            });
+        });
+    }
+
+
+
+
+
+    app.getCountUsers = (req, res) => {
+        Usuario.count({}).then(result => {
+            res.json({
+                OK: true,
+                Total: result
+            })
+        })
+        .catch(error => {
+            res.status(412).json({
+                msg: error.message
             });
         });
     }

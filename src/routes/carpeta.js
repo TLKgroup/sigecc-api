@@ -6,7 +6,12 @@ module.exports = app => {
     app.post('/addNewFolder', Carpeta.addNewFolder); 
 
     app.get('/getCarpetas', Carpeta.getCarpetas);
-
+    
     app.get('/getCarpetasTotal', Carpeta.getTotalCarpetas);
+    
+    app.put('/updateFolder/:nuc', Carpeta.updateFolder);
+    
+    //Peritos
 
+    app.post('/getFolderXPerito', Carpeta.getFolderXPerito);
 }

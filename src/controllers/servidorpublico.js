@@ -18,7 +18,8 @@ module.exports = app => {
             firma: req.body.firma,
             via: req.body.via,
             condicionespecial: req.body.condicionespecial,
-            recomendacion: req.body.recomendacion
+            recomendacion: req.body.recomendacion,
+            identificador: req.body.identificador
         });        
         
         ServidorPublico.create(folderServidorPublico.dataValues, {
@@ -35,7 +36,8 @@ module.exports = app => {
                 'firma',
                 'via',
                 'condicionespecial',
-                'recomendacion'
+                'recomendacion',
+                'identificador'
             ]
         })
         .then(result => {                       
@@ -52,5 +54,51 @@ module.exports = app => {
         });        
     }
 
+
+    app.getServidorPublicoXNUC = (req, res) => {
+        let body = req.body;
+
+        ServidorPublico.findAll({ 
+            where:{
+                nuc: body.nuc
+            }
+        })
+        .then(result => {
+            res.json({
+                OK: true,
+                Total: result.length,
+                Servidorpublico: result
+            })
+        })
+        .catch(error => {
+            res.status(412).json({
+                msg: error.message
+            });
+        });
+    }
+
+    app.getServidorPublicoXIndicio = (req, res) => {
+        let body = req.body;
+
+        ServidorPublico.findAll({ 
+            where:{
+                nuc: body.nuc,
+                identificador: body.identificador
+            }
+        })
+        .then(result => {
+            res.json({
+                OK: true,
+                Total: result.length,
+                Servidorpublico: result
+            })
+        })
+        .catch(error => {
+            res.status(412).json({
+                msg: error.message
+            });
+        });
+    }
+    
     return app;
 }
