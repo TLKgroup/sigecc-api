@@ -21,10 +21,12 @@ module.exports = app => {
             firmaentrega: req.body.firmaentrega,
             firmarecibe: req.body.firmarecibe,
             naturaleza: quitarAcentos(req.body.naturaleza),
-            indicio: req.body.indicio,
+            clase: req.body.clase,
             observacion: req.body.observacion,
             permanencia: req.body.permanencia,
             proposito: req.body.proposito,
+            propositorecibe: req.body.propositorecibe,
+            identificadores: req.body.identificadores,
         });        
         
         Entrega.create(folderEntrega.dataValues, {
@@ -44,10 +46,12 @@ module.exports = app => {
                 'firmaentrega',
                 'firmarecibe',
                 'naturaleza',
-                'indicio',
+                'clase',
                 'observacion',
                 'permanencia',
                 'proposito',
+                'propositorecibe',
+                'identificadores',
             ]
         })
         .then(result => {                       
@@ -92,7 +96,7 @@ module.exports = app => {
         Entrega.findAll({ 
             where:{
                 nuc: body.nuc,
-                indicio: body.indicio,
+                identificadores: body.identificadores,
             }
         })
         .then(result => {

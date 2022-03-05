@@ -65,7 +65,7 @@ module.exports = (sequelize, DataType) => {
             type: DataType.STRING,
             allowNull: false
         },
-        indicio: {
+        clase: {
             type: DataType.STRING,
             allowNull: false
         },
@@ -78,6 +78,14 @@ module.exports = (sequelize, DataType) => {
             allowNull: false
         },
         proposito: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        propositorecibe: {
+            type: DataType.STRING,
+            allowNull: false
+        },
+        identificadores: {
             type: DataType.STRING,
             allowNull: false
         },
