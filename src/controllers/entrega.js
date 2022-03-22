@@ -65,7 +65,8 @@ module.exports = app => {
                 OK: false,
                 msg: err
             });
-        });        
+        }); 
+               
     }
 
     app.getEntregaXNUC = (req, res) => {
